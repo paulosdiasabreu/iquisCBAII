@@ -54,7 +54,7 @@ public class ForncedoresJFrame extends javax.swing.JFrame {
         setTitle("Cadastro Fornecedor");
         setBackground(new java.awt.Color(51, 51, 51));
 
-        labelCPFCNPJ.setText("Tipo de Inscrição CPF/CNPJ: ");
+        labelCPFCNPJ.setText("Inscrição CPF/CNPJ: ");
 
         labelInscricaoEstadual.setText("Inscrição Estadual: ");
 
@@ -68,9 +68,6 @@ public class ForncedoresJFrame extends javax.swing.JFrame {
 
         labelEmail.setText("E-mail: ");
 
-        buttonSalvar.setBackground(new java.awt.Color(255, 255, 255));
-        buttonSalvar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        buttonSalvar.setForeground(new java.awt.Color(0, 102, 0));
         buttonSalvar.setText("Salvar");
         buttonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,9 +75,6 @@ public class ForncedoresJFrame extends javax.swing.JFrame {
             }
         });
 
-        buttonCancelar.setBackground(new java.awt.Color(255, 255, 255));
-        buttonCancelar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        buttonCancelar.setForeground(new java.awt.Color(0, 102, 0));
         buttonCancelar.setText("Cancelar");
         buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,9 +100,9 @@ public class ForncedoresJFrame extends javax.swing.JFrame {
                         .addGap(161, 161, 161))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(labelCPFCNPJ)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(entradaCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                         .addComponent(labelInscricaoEstadual)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(entradaInscricaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -165,23 +159,31 @@ public class ForncedoresJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-/**/
+/*
+    Ação do botão SALVAR
+*/
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
         objFornecedor = new FornecedoresJar();
 
-        if (preencherForm()) {
-            SalvarFornecedor DAO = new SalvarFornecedor();
-            try {
-                if (DAO.salvar(objFornecedor)) {
-                    JOptionPane.showMessageDialog(this, "Registro salvo com sucesso!");
-                } else {
-                    JOptionPane.showMessageDialog(this, "Não foi possível salvaar as informações!");
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(ForncedoresJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        if(validaCampos()){ //verifica se os campos estão preenchidos corretamente
+            if (preencherForm()) { //se preencher o objeto...
+                SalvarFornecedor DAO = new SalvarFornecedor();
+                try {
+                    if (DAO.salvar(objFornecedor)) { //pega os dados do objeto e salva no banco
+                        JOptionPane.showMessageDialog(this, "Registro salvo com sucesso!");
+                        DAO.getConexao().close();
+                        limparCampos(); //limpar os campos após salvar no banco
+                    } else {                         //se não, retorna mensagem que negativa
+                        JOptionPane.showMessageDialog(this, "Não foi possível salvar as informações!");
+                        DAO.getConexao().close();
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(ForncedoresJFrame.class.getName()).log(Level.SEVERE, null, ex);
 
+                }
+            } //fim do preenchimento do objeto
+        }  //fim da verificação do preenchimento dos campos      
+        
     }//GEN-LAST:event_buttonSalvarActionPerformed
 /**/
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
@@ -229,10 +231,8 @@ public class ForncedoresJFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ForncedoresJFrame().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new ForncedoresJFrame().setVisible(true);
         });
     }
 
@@ -254,10 +254,14 @@ public class ForncedoresJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel labelRazaoSocial;
     private javax.swing.JLabel labelTelefone;
     // End of variables declaration//GEN-END:variables
-
+    
+    //atributo para setar o valor da Inscrição Estadual como isento
+    private String novaInscricaoEstadual;
+    
     //Meus metodos
+    
     private boolean preencherForm() {
-
+           //Método para preencher os dados nos atributos...para serem salvos no BD
         objFornecedor = new FornecedoresJar();
         objFornecedor.setInscricaoCpfCnpj(entradaCpfCnpj.getText());
         objFornecedor.setInscricaoEstadual(entradaInscricaoEstadual.getText());
@@ -268,5 +272,81 @@ public class ForncedoresJFrame extends javax.swing.JFrame {
 
         return true;
     }
+    
+    private boolean validaCampos(){
+        //Método para validar os campos do formulário
+        //09:19min
+        
+        if(entradaCpfCnpj.getText().equals("") || entradaCpfCnpj.getText().equals(null)){
+            JOptionPane.showMessageDialog(this, "Informe a Inscrição CPF/CNPJ.");
+            entradaCpfCnpj.requestFocus();
+            return false;
+        }
+        if(entradaInscricaoEstadual.getText().equals("") || entradaInscricaoEstadual.getText().equals(null) ){
+            int opcao = JOptionPane.showConfirmDialog(this, "Inscrição Estadual não declarada.\n" +
+                                                            "Deseja declarar este Fornecedor como \"ISENTO\"?", "Confirmação", JOptionPane.YES_NO_OPTION);
+            if(opcao == JOptionPane.YES_OPTION){
+                entradaInscricaoEstadual.setText("ISENTO");
+            }else{
+                JOptionPane.showMessageDialog(this, "Informe a Inscrição Estadual.");
+            }
+        }
+        if(entradaRazaoSocial.getText().equals("") || entradaRazaoSocial.getText().equals(null)){
+            JOptionPane.showMessageDialog(this, "Informe o Nome Completo\n" +
+                                                "ou Razão Social do Fornecedor.");
+            entradaRazaoSocial.requestFocus();
+            return false;
+        }
+        if(entradaNomeFantasia.getText().equals("") || entradaNomeFantasia.getText().equals(null)){
+            JOptionPane.showMessageDialog(this, "Informe o Nome Fantasia do Fornecedor." +
+                                                "\nCaso não possua, informe um apelido para identificação");
+            entradaNomeFantasia.requestFocus();
+            return false;
+        }
+        if(entradaTelefone.getText().equals("") || entradaTelefone.getText().equals(null)){
+            JOptionPane.showMessageDialog(this, "Informe o telefone para contato.");
+            entradaTelefone.requestFocus();
+            return false;
+        }
+        if(entradaEmail.getText().equals("") || entradaEmail.getText().equals(null)){
+            JOptionPane.showMessageDialog(this, "Informe o e-mail de contato do Fornecedor.");
+            entradaEmail.requestFocus();
+            return false;
+        }
+        
+        return true;
+    } //finaliza validaCampos()
+    
+    //Método para limpar os campos do formulário após alguma requisição
+    private void limparCampos(){
+        entradaCpfCnpj.setText("");
+        entradaInscricaoEstadual.setText("");
+        entradaRazaoSocial.setText("");
+        entradaNomeFantasia.setText("");
+        entradaTelefone.setText("");
+        entradaEmail.setText("");
+    }
+    
+    //Validar CPF/CNPJ
+    
+    //Validar Telefone
+    
+    //validar E-mail
+
+/* Primeiro método para declarar a Inscrição Estadual como isento caso o usuário não informe algun valor
+    
+    private String parametrizaInscricaoEstadual(){
+        //metodo para parametrizar o campo Inscrição Estadual
+        //Se valor em branco: ele seta o valor como ISENTO
+        if(entradaInscricaoEstadual.getText().equals("") || entradaInscricaoEstadual.getText().equals(null) ){
+             novaInscricaoEstadual = ("ISENTO") ;
+             return novaInscricaoEstadual;
+        }else{
+            novaInscricaoEstadual = entradaInscricaoEstadual.getText();
+            return novaInscricaoEstadual;
+        }
+    }
+    */
+
 
 }

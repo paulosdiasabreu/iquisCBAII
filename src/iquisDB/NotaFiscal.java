@@ -28,6 +28,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "NotaFiscal.findAll", query = "SELECT n FROM NotaFiscal n")})
 public class NotaFiscal implements Serializable {
+    @Lob
+    @Column(name = "imagemNF")
+    private byte[] imagemNF;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,9 +42,6 @@ public class NotaFiscal implements Serializable {
     private int fornecedoresidFornecedores;
     @Column(name = "numeroNF")
     private Integer numeroNF;
-    @Lob
-    @Column(name = "imagemNF")
-    private byte[] imagemNF;
 
     public NotaFiscal() {
     }
@@ -79,13 +79,6 @@ public class NotaFiscal implements Serializable {
         this.numeroNF = numeroNF;
     }
 
-    public byte[] getImagemNF() {
-        return imagemNF;
-    }
-
-    public void setImagemNF(byte[] imagemNF) {
-        this.imagemNF = imagemNF;
-    }
 
     @Override
     public int hashCode() {
@@ -110,6 +103,14 @@ public class NotaFiscal implements Serializable {
     @Override
     public String toString() {
         return "iquisDB.NotaFiscal[ idNotaFiscal=" + idNotaFiscal + " ]";
+    }
+
+    public byte[] getImagemNF() {
+        return imagemNF;
+    }
+
+    public void setImagemNF(byte[] imagemNF) {
+        this.imagemNF = imagemNF;
     }
     
 }

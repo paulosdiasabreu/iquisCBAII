@@ -63,9 +63,9 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="labelCPFCNPJ" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="entradaCpfCnpj" min="-2" pref="158" max="-2" attributes="0"/>
-                      <EmptySpace pref="61" max="32767" attributes="0"/>
+                      <EmptySpace pref="85" max="32767" attributes="0"/>
                       <Component id="labelInscricaoEstadual" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="entradaInscricaoEstadual" min="-2" pref="188" max="-2" attributes="0"/>
@@ -139,7 +139,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="labelCPFCNPJ">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Tipo de Inscri&#xe7;&#xe3;o CPF/CNPJ: "/>
+        <Property name="text" type="java.lang.String" value="Inscri&#xe7;&#xe3;o CPF/CNPJ: "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="entradaCpfCnpj">
@@ -183,15 +183,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="buttonSalvar">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="11" style="1"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="0" type="rgb"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Salvar"/>
       </Properties>
       <Events>
@@ -200,15 +191,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="buttonCancelar">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="11" style="1"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="0" type="rgb"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
       <Events>
