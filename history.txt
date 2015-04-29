@@ -1,0 +1,12 @@
+Ínicio do projeto;
+Estruturação do Banco de Dados;
+Implementação da classe Fornecedor;
+Implementação da classe de Conexão;
+Implementação da classe SalvarFornecedores;
+Implementação do formulário Fornecedores;
+Implementação de eventos para dar funcionalidades ao formulário Fornecedores;
+Validação dos campos do formulário Fornecedores;
+Implementaçao do método limparCampos no formulário Fornecedores;
+Implementação da GUI CadastroNotaFiscal;
+GUI CadastroNotaFiscal funcional;
+Inicio da implementação do cadastro de unidade;

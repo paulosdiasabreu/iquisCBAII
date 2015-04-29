@@ -5,8 +5,11 @@
         <group>
             <file>file:/D:/Copy/Unipam/3o%20Semestre%202015/PI/IquisCbaII/src/iquiscbaii/ForncedoresJFrame.java</file>
             <file>file:/D:/Copy/Unipam/3o%20Semestre%202015/PI/IquisCbaII/src/iquiscbaii/FornecedoresJar.java</file>
+            <file>file:/D:/Copy/Unipam/3o%20Semestre%202015/PI/IquisCbaII/src/dataBase/SalvarNotaFiscal.java</file>
             <file>file:/D:/Copy/Unipam/3o%20Semestre%202015/PI/IquisCbaII/src/dataBase/ConectaDB.java</file>
             <file>file:/D:/Copy/Unipam/3o%20Semestre%202015/PI/IquisCbaII/src/dataBase/SalvarFornecedor.java</file>
+            <file>file:/D:/Copy/Unipam/3o%20Semestre%202015/PI/IquisCbaII/src/iquiscbaii/BemAtivoJFrame.java</file>
+            <file>file:/D:/Copy/Unipam/3o%20Semestre%202015/PI/IquisCbaII/src/iquiscbaii/NotaFiscalJFrame.java</file>
         </group>
     </open-files>
 </project-private>

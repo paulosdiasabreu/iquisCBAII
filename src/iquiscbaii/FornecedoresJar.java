@@ -6,6 +6,7 @@ public class FornecedoresJar {
     
     //Atributos
     
+    private int    idFornecedores;
     private String inscricaoCpfCnpj;
     private String inscricaoEstadual;
     private String razaoSocial;
@@ -29,6 +30,10 @@ public class FornecedoresJar {
     
     
     //Métodos SET
+    public void setIdFornecedores(int idFornecedores){
+        this.idFornecedores = idFornecedores;
+    }
+    
     public void setInscricaoCpfCnpj(String inscricaoCpfCnpj){
         this.inscricaoCpfCnpj = inscricaoCpfCnpj;
     }
@@ -54,6 +59,9 @@ public class FornecedoresJar {
     }
     
     //Métodos GET
+    public int getIdFornecedores(){
+        return idFornecedores;
+    }
     
     public String getInscricaoCpfCnpj(){
         return inscricaoCpfCnpj;
@@ -77,6 +85,11 @@ public class FornecedoresJar {
     
     public String getEmail(){
         return email;
+    }
+    
+    @Override
+    public String toString(){
+        return razaoSocial;
     }
 
     

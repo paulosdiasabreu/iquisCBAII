@@ -56,19 +56,32 @@ public class ForncedoresJFrame extends javax.swing.JFrame {
 
         labelCPFCNPJ.setText("Inscrição CPF/CNPJ: ");
 
+        entradaCpfCnpj.setToolTipText("Informe a Inscrição CPF ou CNPJ do Fornecedor");
+
         labelInscricaoEstadual.setText("Inscrição Estadual: ");
 
+        entradaInscricaoEstadual.setToolTipText("Informe a Inscrição Estadual do Fornecedor");
+
         labelRazaoSocial.setText("Razão Social: ");
+
+        entradaRazaoSocial.setToolTipText("Informe a Razão Social do Fornecedor");
 
         labelNomeFantasia.setText("Nome Fantasia: ");
         labelNomeFantasia.setRequestFocusEnabled(false);
         labelNomeFantasia.setVerifyInputWhenFocusTarget(false);
 
+        entradaNomeFantasia.setToolTipText("Informe o Nome Fantasia do Fornecedor, caso não possua, informe um apelido");
+
         labelTelefone.setText("Telefone: ");
+
+        entradaTelefone.setToolTipText("Informe o telefone de contato com DDD");
 
         labelEmail.setText("E-mail: ");
 
+        entradaEmail.setToolTipText("Informe o principal e-mail de contato");
+
         buttonSalvar.setText("Salvar");
+        buttonSalvar.setToolTipText("Clique para salvar o cadastro do Fornecedor");
         buttonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSalvarActionPerformed(evt);
@@ -76,6 +89,7 @@ public class ForncedoresJFrame extends javax.swing.JFrame {
         });
 
         buttonCancelar.setText("Cancelar");
+        buttonCancelar.setToolTipText("Clique para cancelar o cadastro do Fornecedor");
         buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCancelarActionPerformed(evt);
@@ -102,7 +116,7 @@ public class ForncedoresJFrame extends javax.swing.JFrame {
                         .addComponent(labelCPFCNPJ)
                         .addGap(18, 18, 18)
                         .addComponent(entradaCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                         .addComponent(labelInscricaoEstadual)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(entradaInscricaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -121,7 +135,7 @@ public class ForncedoresJFrame extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(entradaTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(entradaEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(228, Short.MAX_VALUE))))
+                        .addContainerGap(235, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,11 +298,15 @@ public class ForncedoresJFrame extends javax.swing.JFrame {
         }
         if(entradaInscricaoEstadual.getText().equals("") || entradaInscricaoEstadual.getText().equals(null) ){
             int opcao = JOptionPane.showConfirmDialog(this, "Inscrição Estadual não declarada.\n" +
-                                                            "Deseja declarar este Fornecedor como \"ISENTO\"?", "Confirmação", JOptionPane.YES_NO_OPTION);
+                                                            "Deseja declarar este Fornecedor como \"ISENTO\"?", 
+                                                            "Confirmação", JOptionPane.YES_NO_OPTION);
             if(opcao == JOptionPane.YES_OPTION){
                 entradaInscricaoEstadual.setText("ISENTO");
+                return false;
             }else{
                 JOptionPane.showMessageDialog(this, "Informe a Inscrição Estadual.");
+                entradaInscricaoEstadual.requestFocus();
+                return false;
             }
         }
         if(entradaRazaoSocial.getText().equals("") || entradaRazaoSocial.getText().equals(null)){

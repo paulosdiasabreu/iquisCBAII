@@ -65,7 +65,7 @@
                       <Component id="labelCPFCNPJ" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="entradaCpfCnpj" min="-2" pref="158" max="-2" attributes="0"/>
-                      <EmptySpace pref="85" max="32767" attributes="0"/>
+                      <EmptySpace pref="92" max="32767" attributes="0"/>
                       <Component id="labelInscricaoEstadual" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="entradaInscricaoEstadual" min="-2" pref="188" max="-2" attributes="0"/>
@@ -90,7 +90,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="228" max="32767" attributes="0"/>
+                      <EmptySpace pref="235" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -143,6 +143,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="entradaCpfCnpj">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Informe a Inscri&#xe7;&#xe3;o CPF ou CNPJ do Fornecedor"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelInscricaoEstadual">
       <Properties>
@@ -150,6 +153,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="entradaInscricaoEstadual">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Informe a Inscri&#xe7;&#xe3;o Estadual do Fornecedor"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelRazaoSocial">
       <Properties>
@@ -157,6 +163,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="entradaRazaoSocial">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Informe a Raz&#xe3;o Social do Fornecedor"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelNomeFantasia">
       <Properties>
@@ -166,6 +175,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="entradaNomeFantasia">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Informe o Nome Fantasia do Fornecedor, caso n&#xe3;o possua, informe um apelido"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelTelefone">
       <Properties>
@@ -173,6 +185,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="entradaTelefone">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Informe o telefone de contato com DDD"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelEmail">
       <Properties>
@@ -180,10 +195,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="entradaEmail">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Informe o principal e-mail de contato"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="buttonSalvar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salvar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Clique para salvar o cadastro do Fornecedor"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSalvarActionPerformed"/>
@@ -192,6 +211,7 @@
     <Component class="javax.swing.JButton" name="buttonCancelar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Clique para cancelar o cadastro do Fornecedor"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCancelarActionPerformed"/>
