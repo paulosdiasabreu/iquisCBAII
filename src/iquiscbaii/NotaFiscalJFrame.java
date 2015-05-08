@@ -18,6 +18,9 @@ public class NotaFiscalJFrame extends javax.swing.JFrame {
      */
     public NotaFiscalJFrame() {
         initComponents();
+        
+        setLocationRelativeTo(null);
+        
         SalvarNotaFiscal DAO = new SalvarNotaFiscal();
         try{
             DefaultComboBoxModel jcbSelecione = new DefaultComboBoxModel(DAO.todosFornecedores().toArray());
@@ -47,7 +50,8 @@ public class NotaFiscalJFrame extends javax.swing.JFrame {
         jbuttonSalvar = new javax.swing.JButton();
         jbuttonCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de Nota Fiscal");
 
         jLabel1.setText("Fornecedor: ");
 
@@ -177,7 +181,7 @@ public class NotaFiscalJFrame extends javax.swing.JFrame {
                         DAO2.getConexao().close();
                     }
                 }catch(SQLException ex){
-                    Logger.getLogger(ForncedoresJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FornecedoresJFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             
@@ -189,6 +193,8 @@ public class NotaFiscalJFrame extends javax.swing.JFrame {
         int escolha = JOptionPane.showConfirmDialog(this, "Deseja relamente cancelar o cadastro?", "Cancelar", JOptionPane.YES_NO_OPTION);
         if(escolha == JOptionPane.YES_OPTION){
             limparCampos();
+        }else{
+            
         }
     }//GEN-LAST:event_jbuttonCancelarActionPerformed
 
@@ -258,7 +264,7 @@ public class NotaFiscalJFrame extends javax.swing.JFrame {
     private boolean preencherForm(){
         objNF = new NotaFiscalJar();
         
-        System.out.println(jcbSelecioneFornecedor.getSelectedItem());
+        //System.out.println(jcbSelecioneFornecedor.getSelectedItem());
         FornecedoresJar f = (FornecedoresJar) jcbSelecioneFornecedor.getSelectedItem();
         objNF.setFornecedores_idFornecedores(f.getIdFornecedores());
         objNF.setNumeroNF(converteNumeroNF());
@@ -268,16 +274,19 @@ public class NotaFiscalJFrame extends javax.swing.JFrame {
     }
     
     private boolean validaCampos(){
-        if(jcbSelecioneFornecedor.getSelectedIndex() == 0){
-            JOptionPane.showMessageDialog(this, "Selecione o Fornecedor.");
-            return false;
-        }
+        //if(jcbSelecioneFornecedor.getSelectedIndex() == 0){
+        //    JOptionPane.showMessageDialog(this, "Selecione o Fornecedor.");
+        //    jcbSelecioneFornecedor.requestFocus();
+        //    return false;
+        //}
         if(entradaNumeroNotaFiscal.getText().equals("") || entradaNumeroNotaFiscal.getText().equals(null)){
             JOptionPane.showMessageDialog(this, "Informe o número da Nota Fiscal.");
+            entradaNumeroNotaFiscal.requestFocus();
             return false;
         }
         if(entradaCaminhoArquivo.getText().equals("") || entradaCaminhoArquivo.getText().equals(null)){
             JOptionPane.showMessageDialog(this, "Informe a imagem da Nota Fiscal");
+            entradaCaminhoArquivo.requestFocus();
             return false;
         }
         return true;

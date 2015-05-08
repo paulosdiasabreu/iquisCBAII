@@ -14,7 +14,7 @@ public class IquisCbaII {
     public static void main(String[] args) {
         // TODO code application logic here
         //Chamar cadastro de fornecedores
-        new ForncedoresJFrame().setVisible(true);
+        new FornecedoresJFrame().setVisible(true);
         //FornecedoresJar fornecedores = new FornecedoresJar();
         
     }

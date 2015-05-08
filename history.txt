@@ -10,3 +10,5 @@ Implementaçao do método limparCampos no formulário Fornecedores;
 Implementação da GUI CadastroNotaFiscal;
 GUI CadastroNotaFiscal funcional;
 Inicio da implementação do cadastro de unidade;
+Inicio da implementação do cadastro de Setor;
+Finalizado cadastro de Bem Ativo;

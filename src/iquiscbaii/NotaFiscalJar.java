@@ -1,9 +1,9 @@
 package iquiscbaii;
 
 public class NotaFiscalJar {
-    private int Fornecedores_idFornecedores;
-    private int idNotaFiscal;
-    private int numeroNF;
+    private Integer Fornecedores_idFornecedores;
+    private Integer idNotaFiscal;
+    private Integer numeroNF;
     private String imagemNF;
 
     public void setFornecedores_idFornecedores(int Fornecedores_idFornecedores) {
@@ -23,20 +23,25 @@ public class NotaFiscalJar {
     }
     
     //metodos get
-    public int getFornecedores_idFornecedores() {
+    public Integer getFornecedores_idFornecedores() {
         return Fornecedores_idFornecedores;
     }
     
-    public int getIdNotaFiscal() {
+    public Integer getIdNotaFiscal() {
         return idNotaFiscal;
     }    
 
-    public int getNumeroNF() {
+    public Integer getNumeroNF() {
         return numeroNF;
     }
 
     public String getImagemNF() {
         return imagemNF;
+    }
+    
+    @Override
+    public String toString(){
+        return numeroNF.toString() ;
     }
  
 }

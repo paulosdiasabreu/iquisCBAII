@@ -5,17 +5,44 @@
  */
 package iquiscbaii;
 
+import dataBase.SalvarBemAtivo;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Home
  */
 public class BemAtivoJFrame extends javax.swing.JFrame {
+    
+    BemAtivoJar objBemAtivo;
 
     /**
      * Creates new form BemAtivoJFrame
      */
     public BemAtivoJFrame() {
         initComponents();
+        
+        setLocationRelativeTo(null);
+        
+        SalvarBemAtivo DAO = new SalvarBemAtivo();
+        try{
+            DefaultComboBoxModel jcbNF = new DefaultComboBoxModel(DAO.todasAsNotas().toArray());
+            jcbNotaFiscal.setModel(jcbNF);
+            
+            DefaultComboBoxModel jcbUni = new DefaultComboBoxModel(DAO.todasUnidades().toArray());
+            jcbUnidade.setModel(jcbUni);
+            
+            DefaultComboBoxModel jcbSet = new DefaultComboBoxModel(DAO.todosSetor().toArray());
+            jcbSetor.setModel(jcbSet);
+        }catch(SQLException ex){
+            Logger.getLogger(NotaFiscalJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }
 
     /**
@@ -28,34 +55,42 @@ public class BemAtivoJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        jcbNotaFiscal = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        jcbUnidade = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        entradaFabricante = new javax.swing.JTextField();
+        entradaModelo = new javax.swing.JTextField();
+        entradaSerialNumber = new javax.swing.JTextField();
+        entradaNumeroImobilizado = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        entradaDescricao = new javax.swing.JTextPane();
+        jbuttonSalvar = new javax.swing.JButton();
+        jbuttonCancelar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jcbSetor = new javax.swing.JComboBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de Bem Ativo");
 
         jLabel1.setText("Nota Fiscal: ");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Selecione>" }));
+        jcbNotaFiscal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Selecione>" }));
+        jcbNotaFiscal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbNotaFiscalActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("Setor/Filial: ");
+        jLabel2.setText("Unidade: ");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Selecione>" }));
+        jcbUnidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Selecione>" }));
 
-        jLabel3.setText("Fabricante: ");
+        jLabel3.setText("Fabricante:  ");
 
         jLabel4.setText("Modelo: ");
 
@@ -65,11 +100,25 @@ public class BemAtivoJFrame extends javax.swing.JFrame {
 
         jLabel7.setText("Descrição: ");
 
-        jScrollPane1.setViewportView(jTextPane1);
+        jScrollPane1.setViewportView(entradaDescricao);
 
-        jButton1.setText("Salvar");
+        jbuttonSalvar.setText("Salvar");
+        jbuttonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbuttonSalvarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Cancelar");
+        jbuttonCancelar.setText("Cancelar");
+        jbuttonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbuttonCancelarActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Setor: ");
+
+        jcbSetor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Selecione>" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,46 +126,44 @@ public class BemAtivoJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(39, 39, 39)
-                            .addComponent(jLabel4)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTextField2))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(119, 119, 119))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jTextField3)
-                                    .addGap(80, 80, 80)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jTextField4))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2)
+                            .addComponent(jbuttonCancelar)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(72, 72, 72)
-                        .addComponent(jButton1)))
+                        .addComponent(jbuttonSalvar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(entradaNumeroImobilizado))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(entradaSerialNumber))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(entradaFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jcbNotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(80, 80, 80)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(entradaModelo)
+                            .addComponent(jcbSetor, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jcbUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -125,35 +172,95 @@ public class BemAtivoJFrame extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbNotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(entradaFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(jcbSetor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(entradaSerialNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(entradaNumeroImobilizado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbuttonSalvar)
+                            .addComponent(jbuttonCancelar)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(entradaModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbuttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonCancelarActionPerformed
+        // TODO add your handling code here:
+        int escolha = JOptionPane.showConfirmDialog(this, "Deseja realmente cancelar o cadastro?", "Cancelar",JOptionPane.YES_NO_OPTION);
+        if(escolha == JOptionPane.YES_OPTION){
+            limparCampos();
+        }else{
+            
+        }//fim do else  
+    }//GEN-LAST:event_jbuttonCancelarActionPerformed
+
+    private void jbuttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonSalvarActionPerformed
+        // TODO add your handling code here:
+        //instanciar objeto //validar campos
+        //preencher objeto  //salvar no banco
+        objBemAtivo = new BemAtivoJar();
+        
+        if(validaCampos()){//inicio if valida
+            if(preencherObjeto()){ //inicio if preenche
+                SalvarBemAtivo DAOsalvar = new SalvarBemAtivo();
+                try{
+                    if(DAOsalvar.salvarBem(objBemAtivo)){
+                        JOptionPane.showMessageDialog(this, "Registro salvo com sucesso!");
+                        DAOsalvar.getConexao().close();
+                        limparCampos();
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Não foi possível salvar as informações!");
+                        DAOsalvar.getConexao().close();
+                    }
+                    
+                }catch(SQLException ex){
+                    Logger.getLogger(FornecedoresJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } // fim if preenche
+        }//fim if valida
+        
+    }//GEN-LAST:event_jbuttonSalvarActionPerformed
+
+    private void jcbNotaFiscalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbNotaFiscalActionPerformed
+        /* TODO add your handling code here:
+        SalvarBemAtivo DAO = new SalvarBemAtivo();
+        try{
+            DefaultComboBoxModel jcbNF = new DefaultComboBoxModel(DAO.todasAsNotas().toArray());
+            jcbNotaFiscal.setModel(jcbNF);
+        }catch(SQLException ex){
+            Logger.getLogger(NotaFiscalJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        */
+        
+    }//GEN-LAST:event_jcbNotaFiscalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,10 +298,11 @@ public class BemAtivoJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JTextPane entradaDescricao;
+    private javax.swing.JTextField entradaFabricante;
+    private javax.swing.JTextField entradaModelo;
+    private javax.swing.JTextField entradaNumeroImobilizado;
+    private javax.swing.JTextField entradaSerialNumber;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -202,11 +310,103 @@ public class BemAtivoJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JButton jbuttonCancelar;
+    private javax.swing.JButton jbuttonSalvar;
+    private javax.swing.JComboBox jcbNotaFiscal;
+    private javax.swing.JComboBox jcbSetor;
+    private javax.swing.JComboBox jcbUnidade;
     // End of variables declaration//GEN-END:variables
+
+private boolean validaCampos(){
+    
+    if(jcbNotaFiscal.getSelectedIndex() == -1){
+        JOptionPane.showMessageDialog(this, "Selecione a Nota Fiscal.");
+        jcbNotaFiscal.requestFocus();
+        return false;
+    }
+    if(jcbUnidade.getSelectedIndex() == -1){
+        JOptionPane.showMessageDialog(this, "Selecione a Unidade.");
+        jcbUnidade.requestFocus();
+        return false;
+    }
+    if(jcbSetor.getSelectedIndex() == -1){
+        JOptionPane.showMessageDialog(this, "Selecione o Setor.");
+        jcbSetor.requestFocus();
+        return false;
+    }
+    if(entradaFabricante.getText().equals("")){
+        JOptionPane.showMessageDialog(this, "Informe o Fabricante do produto..");
+        entradaFabricante.requestFocus();
+        return false;
+    }
+    if(entradaModelo.getText().equals("")){
+        JOptionPane.showMessageDialog(this, "Informe o Modelo do produto..");
+        entradaModelo.requestFocus();
+        return false;
+    }
+    if(entradaSerialNumber.getText().equals("")){
+        JOptionPane.showMessageDialog(this, "Informe o Número de Série do produto.");
+        entradaSerialNumber.requestFocus();
+        return false;
+    }
+    if(entradaNumeroImobilizado.getText().equals("")){
+        JOptionPane.showMessageDialog(this, "Informe o Número do Imobilizado do produto.");
+        entradaNumeroImobilizado.requestFocus();
+        return false;
+    }
+    if(entradaDescricao.getText().equals("")){
+        JOptionPane.showMessageDialog(this, "Digite uma breve Descrição do produto.");
+        entradaDescricao.requestFocus();
+        return false;
+    }
+    return true;
+}
+
+private void limparCampos(){
+    jcbNotaFiscal.setSelectedIndex(-1);
+    jcbUnidade.setSelectedIndex(-1);
+    jcbSetor.setSelectedIndex(-1);
+    entradaFabricante.setText("");
+    entradaModelo.setText("");
+    entradaSerialNumber.setText("");
+    entradaNumeroImobilizado.setText("");
+    entradaDescricao.setText("");
+    
+}
+
+private boolean preencherObjeto(){
+    objBemAtivo = new BemAtivoJar();
+    
+    NotaFiscalJar nf = (NotaFiscalJar) jcbNotaFiscal.getSelectedItem();
+    objBemAtivo.setNotaFiscal_idNotaFiscal(nf.getIdNotaFiscal());
+    
+    UnidadeJar uni = (UnidadeJar) jcbUnidade.getSelectedItem();
+    objBemAtivo.setUnidadeDeInstalacao_idUnidadeDeInstalacao(uni.getIdUnidadeDeInstalacao());
+    
+    SetorJar set = (SetorJar) jcbSetor.getSelectedItem();
+    objBemAtivo.setSetorDeInstalacao_idSetor(set.getIdSetor());
+    
+    objBemAtivo.setFabricante(entradaFabricante.getText());
+    objBemAtivo.setModelo(entradaModelo.getText());
+    objBemAtivo.setNumeroDeSerie(entradaSerialNumber.getText());
+    objBemAtivo.setNumeroImobilizado(converteImobilizado());
+    objBemAtivo.setDescricaoProduto(entradaDescricao.getText());
+    
+    
+    return true;
+}
+
+private int converteImobilizado(){
+    
+    String numeroImobilizado;
+    int nImobilizado;
+    
+    numeroImobilizado = entradaNumeroImobilizado.getText();
+    nImobilizado = Integer.parseInt(numeroImobilizado);
+    
+    return nImobilizado;
+}
+
 }
