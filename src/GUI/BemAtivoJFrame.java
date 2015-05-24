@@ -34,7 +34,7 @@ public class BemAtivoJFrame extends javax.swing.JFrame {
         initComponents();
         
         setLocationRelativeTo(null);
-        URL url = this.getClass().getResource("./img/comp.png");
+        URL url = this.getClass().getResource("./img/comp16.png");
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
         this.setIconImage(imagemTitulo);
         

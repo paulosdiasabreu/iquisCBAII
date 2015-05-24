@@ -83,7 +83,7 @@ public class IndexJFrame extends javax.swing.JFrame {
         jMenuCadastro.add(jItemFornecedor);
 
         jItemNotaFiscal.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        jItemNotaFiscal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iquiscbaii/img/nfs.png"))); // NOI18N
+        jItemNotaFiscal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/nf16.png"))); // NOI18N
         jItemNotaFiscal.setText("Nota Fiscal");
         jItemNotaFiscal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,7 +93,7 @@ public class IndexJFrame extends javax.swing.JFrame {
         jMenuCadastro.add(jItemNotaFiscal);
 
         jItemBemAtivo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
-        jItemBemAtivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iquiscbaii/img/comp.png"))); // NOI18N
+        jItemBemAtivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/comp16.png"))); // NOI18N
         jItemBemAtivo.setText("Bem Ativo");
         jItemBemAtivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

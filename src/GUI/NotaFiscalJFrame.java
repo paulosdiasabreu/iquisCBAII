@@ -26,7 +26,7 @@ public class NotaFiscalJFrame extends javax.swing.JFrame {
         initComponents();
         
         setLocationRelativeTo(null);
-        URL url = this.getClass().getResource("./img/nfs.png");
+        URL url = this.getClass().getResource("./img/nf16.png");
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
         this.setIconImage(imagemTitulo);
         
