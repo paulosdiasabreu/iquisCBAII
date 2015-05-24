@@ -11,6 +11,7 @@ import GUI.BemAtivoJFrame;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
+import javax.swing.JFrame;
 
 /**
  *
@@ -22,6 +23,7 @@ public class IndexJFrame extends javax.swing.JFrame {
      * Creates new form IndexJFrame
      */
     public IndexJFrame() {
+        setExtendedState(JFrame.MAXIMIZED_BOTH); //para abrir em modo tela cheia
         initComponents();
         setLocationRelativeTo(null);
         
@@ -44,6 +46,7 @@ public class IndexJFrame extends javax.swing.JFrame {
         jSubItemEnd = new javax.swing.JMenuItem();
         jItemNotaFiscal = new javax.swing.JMenuItem();
         jItemBemAtivo = new javax.swing.JMenuItem();
+        jItemLicenca = new javax.swing.JMenuItem();
         jmConsulta = new javax.swing.JMenu();
         jmConfig = new javax.swing.JMenu();
         jItemUnidade = new javax.swing.JMenuItem();
@@ -68,7 +71,6 @@ public class IndexJFrame extends javax.swing.JFrame {
         });
         jItemFornecedor.add(jSubItemFornecedor);
 
-        jSubItemEnd.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         jSubItemEnd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/fornecedor.png"))); // NOI18N
         jSubItemEnd.setText("Endereço");
         jSubItemEnd.addActionListener(new java.awt.event.ActionListener() {
@@ -99,6 +101,15 @@ public class IndexJFrame extends javax.swing.JFrame {
             }
         });
         jMenuCadastro.add(jItemBemAtivo);
+
+        jItemLicenca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/soft16.png"))); // NOI18N
+        jItemLicenca.setText("Licença de Software");
+        jItemLicenca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jItemLicencaActionPerformed(evt);
+            }
+        });
+        jMenuCadastro.add(jItemLicenca);
 
         jMenuBar1.add(jMenuCadastro);
 
@@ -168,16 +179,21 @@ public class IndexJFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jSubItemFornecedorActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        new SetorJFrame().setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     private void jSubItemEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSubItemEndActionPerformed
         // TODO add your handling code here:
         //alterar...
         new FornecedoresJFrame().setVisible(false);
     }//GEN-LAST:event_jSubItemEndActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jItemLicencaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jItemLicencaActionPerformed
         // TODO add your handling code here:
-        new SetorJFrame().setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        new LicencaJFrame().setVisible(true);
+    }//GEN-LAST:event_jItemLicencaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,6 +233,7 @@ public class IndexJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem jItemBemAtivo;
     private javax.swing.JMenu jItemFornecedor;
+    private javax.swing.JMenuItem jItemLicenca;
     private javax.swing.JMenuItem jItemNotaFiscal;
     private javax.swing.JMenuItem jItemUnidade;
     private javax.swing.JMenuBar jMenuBar1;

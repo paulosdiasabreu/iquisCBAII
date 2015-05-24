@@ -49,7 +49,7 @@ public class BemAtivoJFrame extends javax.swing.JFrame {
             DefaultComboBoxModel jcbSet = new DefaultComboBoxModel(DAO.todosSetor().toArray());
             jcbSetor.setModel(jcbSet);
         }catch(SQLException ex){
-            Logger.getLogger(NotaFiscalJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BemAtivoJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
@@ -272,7 +272,7 @@ public class BemAtivoJFrame extends javax.swing.JFrame {
                     limparCampos();
                                         
                 }catch(SQLException ex){
-                    Logger.getLogger(FornecedoresJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(BemAtivoJFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } // fim if preenche
         }//fim if valida

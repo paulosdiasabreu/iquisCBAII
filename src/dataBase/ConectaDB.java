@@ -15,7 +15,7 @@ public class ConectaDB {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1/iquis", "root", "SIN072856cop_1725");
-            System.out.println("Conexão OK");
+            //System.out.println("Conexão OK");
         }catch(Exception erro){
             System.err.println(erro);
             JOptionPane.showMessageDialog(null,"Ocorreu um erro: " + erro.getMessage(), "Conexão", 3);

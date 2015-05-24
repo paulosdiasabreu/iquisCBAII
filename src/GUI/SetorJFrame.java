@@ -7,6 +7,9 @@ package GUI;
 
 import dataBase.SalvarSetor;
 import iquiscbaii.SetorJar;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +29,9 @@ public class SetorJFrame extends javax.swing.JFrame {
     public SetorJFrame() {
         initComponents();
         setLocationRelativeTo(null);
+        URL url = this.getClass().getResource("./img/dir16.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        this.setIconImage(imagemTitulo);
     }
 
     /**
@@ -115,7 +121,7 @@ public class SetorJFrame extends javax.swing.JFrame {
                     limparCampos(); //limpar os campos após salvar no banco
                     
                 }catch(SQLException ex) {
-                    Logger.getLogger(FornecedoresJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SetorJFrame.class.getName()).log(Level.SEVERE, null, ex);
                     
                 }
                 

@@ -85,7 +85,10 @@ public class BemAtivoJar {
         return numeroImobilizado;
     }
 
-    
+    @Override
+    public String toString(){
+        return numeroImobilizado.toString() ;
+    }
 
     
     

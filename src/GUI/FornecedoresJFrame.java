@@ -121,7 +121,7 @@ public class FornecedoresJFrame extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelCPFCNPJ)
-                                    .addComponent(labelRazaoSocial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(labelRazaoSocial, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(labelNomeFantasia, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
@@ -136,8 +136,8 @@ public class FornecedoresJFrame extends javax.swing.JFrame {
                                 .addComponent(entradaNomeFantasia)
                                 .addGap(80, 80, 80))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(entradaCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                                .addComponent(entradaCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(labelInscricaoEstadual)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(entradaInscricaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -151,7 +151,7 @@ public class FornecedoresJFrame extends javax.swing.JFrame {
                                             .addGap(44, 44, 44)
                                             .addComponent(buttonSalvar))
                                         .addComponent(entradaEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 79, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

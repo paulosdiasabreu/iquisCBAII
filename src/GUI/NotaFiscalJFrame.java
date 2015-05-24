@@ -199,7 +199,7 @@ public class NotaFiscalJFrame extends javax.swing.JFrame {
                         DAO2.getConexao().close();
                     }
                 }catch(SQLException ex){
-                    Logger.getLogger(FornecedoresJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NotaFiscalJFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             

@@ -131,7 +131,7 @@ public class UnidadeJFrame extends javax.swing.JFrame {
                     limparCampos(); //limpar os campos após salvar no banco
                     
                 }catch(SQLException ex) {
-                    Logger.getLogger(FornecedoresJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UnidadeJFrame.class.getName()).log(Level.SEVERE, null, ex);
                     
                 }
                 

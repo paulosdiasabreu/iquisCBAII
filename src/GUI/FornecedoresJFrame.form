@@ -55,7 +55,7 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="labelCPFCNPJ" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelRazaoSocial" max="32767" attributes="0"/>
+                                  <Component id="labelRazaoSocial" pref="103" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -76,9 +76,9 @@
                               <Component id="entradaNomeFantasia" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="entradaCpfCnpj" min="-2" pref="158" max="-2" attributes="0"/>
-                              <EmptySpace pref="104" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="entradaCpfCnpj" min="-2" pref="160" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="labelInscricaoEstadual" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="entradaInscricaoEstadual" min="-2" pref="188" max="-2" attributes="0"/>
@@ -96,7 +96,7 @@
                                       <Component id="entradaEmail" min="-2" pref="335" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="79" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
