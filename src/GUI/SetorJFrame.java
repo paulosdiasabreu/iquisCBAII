@@ -11,16 +11,18 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Home
  */
 public class SetorJFrame extends javax.swing.JFrame {
-    
+
     SetorJar objSetor;
 
     /**
@@ -29,9 +31,13 @@ public class SetorJFrame extends javax.swing.JFrame {
     public SetorJFrame() {
         initComponents();
         setLocationRelativeTo(null);
+        /**
+         * Este método seta o ícone da janela
+         */
         URL url = this.getClass().getResource("./img/dir16.png");
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
         this.setIconImage(imagemTitulo);
+        preencheTabela();
     }
 
     /**
@@ -48,6 +54,8 @@ public class SetorJFrame extends javax.swing.JFrame {
         entradaSetor = new javax.swing.JTextField();
         jbtnSalvar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jspTable = new javax.swing.JScrollPane();
+        jtbTabelaSetor = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Setor");
@@ -68,6 +76,21 @@ public class SetorJFrame extends javax.swing.JFrame {
         jButton1.setText("Cancelar");
         jButton1.setToolTipText("Clique para Cancelar");
 
+        jtbTabelaSetor.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Setor"
+            }
+        ));
+        jspTable.setViewportView(jtbTabelaSetor);
+        if (jtbTabelaSetor.getColumnModel().getColumnCount() > 0) {
+            jtbTabelaSetor.getColumnModel().getColumn(0).setMinWidth(60);
+            jtbTabelaSetor.getColumnModel().getColumn(0).setPreferredWidth(65);
+            jtbTabelaSetor.getColumnModel().getColumn(0).setMaxWidth(120);
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,6 +109,10 @@ public class SetorJFrame extends javax.swing.JFrame {
                             .addComponent(entradaSetor, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jLabel1)))
                 .addContainerGap(88, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jspTable, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,10 +123,12 @@ public class SetorJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(entradaSetor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnSalvar)
                     .addComponent(jButton1))
+                .addGap(18, 18, 18)
+                .addComponent(jspTable, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -109,27 +138,27 @@ public class SetorJFrame extends javax.swing.JFrame {
     private void jbtnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSalvarActionPerformed
         // TODO add your handling code here:
         objSetor = new SetorJar();
-        
-        if(validarCampos()){
-            if(preencherObjeto()){
-                
+
+        if (validarCampos()) {
+            if (preencherObjeto()) {
+
                 SalvarSetor DAO = new SalvarSetor();
-                try{
+                try {
                     DAO.salvar(objSetor);
                     JOptionPane.showMessageDialog(this, "Registro salvo com sucesso!");
                     DAO.getConexao().close();
                     limparCampos(); //limpar os campos após salvar no banco
-                    
-                }catch(SQLException ex) {
+
+                } catch (SQLException ex) {
                     Logger.getLogger(SetorJFrame.class.getName()).log(Level.SEVERE, null, ex);
-                    
+
                 }
-                
+
                 limparCampos();
             }
         }
-        
-        
+
+
     }//GEN-LAST:event_jbtnSalvarActionPerformed
 
     /**
@@ -173,32 +202,51 @@ public class SetorJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton jbtnSalvar;
+    private javax.swing.JScrollPane jspTable;
+    private javax.swing.JTable jtbTabelaSetor;
     // End of variables declaration//GEN-END:variables
 
-private boolean preencherObjeto(){
-   objSetor = new SetorJar();
-   
-   objSetor.setSetor(entradaSetor.getText());
-    
-    return true;
-}
+    private boolean preencherObjeto() {
+        objSetor = new SetorJar();
 
-private boolean validarCampos(){
-    
-    if(entradaSetor.getText().equals("")){
-        JOptionPane.showMessageDialog(this, "Informe o Setor.");
-        entradaSetor.requestFocus();
-        return false;
+        objSetor.setSetor(entradaSetor.getText());
+
+        return true;
     }
-    
-    return true;
-}
 
-private void limparCampos(){
-    
-    entradaSetor.setText(null);
-    
-}
+    private boolean validarCampos() {
 
+        if (entradaSetor.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Informe o Setor.");
+            entradaSetor.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
+
+    private void limparCampos() {
+
+        entradaSetor.setText(null);
+
+    }
+
+    private void preencheTabela() {
+        SalvarSetor DAOConsulta = new SalvarSetor();
+        SetorJar uni = new SetorJar();
+        DefaultTableModel modeloTU = (DefaultTableModel) jtbTabelaSetor.getModel();
+
+        try {
+            List<SetorJar> todosSetores = DAOConsulta.ConsultaTudo();
+
+            for (SetorJar setor : todosSetores) {
+                modeloTU.addRow(new Object[]{setor.getIdSetor(), setor.getSetor()});
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UnidadeJFrame.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+
+    }
 
 }

@@ -2,7 +2,10 @@ package dataBase;
 
 import iquiscbaii.SetorJar;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SalvarSetor extends ConectaDB{
     
@@ -23,4 +26,30 @@ public class SalvarSetor extends ConectaDB{
             return false;
         }  
     }
+    
+    public List<SetorJar> ConsultaTudo() throws SQLException{
+        
+        List<SetorJar> todosSetores = new ArrayList<SetorJar>();
+        
+        ConectaDB con = new ConectaDB();
+        
+        String SQL = "SELECT idSetor, setor FROM setordeinstalacao";
+        
+        
+        PreparedStatement ps = con.getConexao().prepareStatement(SQL);      
+        ResultSet rs = ps.executeQuery(SQL);
+        
+        //rs.first();
+        
+        while(rs.next()){
+            SetorJar set = new SetorJar();
+            set.setIdSetor(new Integer (rs.getInt("idSetor")));
+            set.setSetor(rs.getString("setor"));
+            
+            todosSetores.add(set);
+        }
+        
+        return todosSetores;
+    }
+    
 }

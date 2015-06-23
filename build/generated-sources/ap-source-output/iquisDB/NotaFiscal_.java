@@ -4,7 +4,7 @@ import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2015-05-24T17:59:44")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2015-06-08T18:56:25")
 @StaticMetamodel(NotaFiscal.class)
 public class NotaFiscal_ { 
 

@@ -5,15 +5,21 @@
  */
 package GUI;
 
+import dataBase.ConectaDB;
 import dataBase.SalvarUnidade;
 import iquiscbaii.UnidadeJar;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,11 +28,13 @@ import javax.swing.JOptionPane;
 public class UnidadeJFrame extends javax.swing.JFrame {
     
     UnidadeJar objUni;
-
+    ConectaDB con;
+    
     /**
      * Creates new form UnidadeJFrame
      */
     public UnidadeJFrame() {
+//        preencheTabela();
         initComponents();
         setLocationRelativeTo(null);
         
@@ -34,8 +42,9 @@ public class UnidadeJFrame extends javax.swing.JFrame {
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
         this.setIconImage(imagemTitulo);
         
+        preencheTabela();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,8 +57,10 @@ public class UnidadeJFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         entradaUnidade = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jbtSalvar = new javax.swing.JButton();
+        jbtCancelar = new javax.swing.JButton();
+        jspScroll = new javax.swing.JScrollPane();
+        jtbTabelaUnidade = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Unidade");
@@ -61,21 +72,44 @@ public class UnidadeJFrame extends javax.swing.JFrame {
 
         entradaUnidade.setToolTipText("Informe a nova Unidade");
 
-        jButton1.setText("Salvar");
-        jButton1.setToolTipText("Clique para Salvar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbtSalvar.setText("Salvar");
+        jbtSalvar.setToolTipText("Clique para Salvar");
+        jbtSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbtSalvarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancelar");
-        jButton2.setToolTipText("Clique para Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbtCancelar.setText("Cancelar");
+        jbtCancelar.setToolTipText("Clique para Cancelar");
+        jbtCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbtCancelarActionPerformed(evt);
             }
         });
+
+        jtbTabelaUnidade.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Unidade"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jspScroll.setViewportView(jtbTabelaUnidade);
+        if (jtbTabelaUnidade.getColumnModel().getColumnCount() > 0) {
+            jtbTabelaUnidade.getColumnModel().getColumn(0).setMinWidth(60);
+            jtbTabelaUnidade.getColumnModel().getColumn(0).setPreferredWidth(65);
+            jtbTabelaUnidade.getColumnModel().getColumn(0).setMaxWidth(120);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,9 +119,9 @@ public class UnidadeJFrame extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(jbtCancelar)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1))
+                        .addComponent(jbtSalvar))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(91, 91, 91))
@@ -96,6 +130,10 @@ public class UnidadeJFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(entradaUnidade)))
                 .addContainerGap(78, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jspScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,17 +144,20 @@ public class UnidadeJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(entradaUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jbtSalvar)
+                    .addComponent(jbtCancelar))
+                .addGap(18, 18, 18)
+                .addComponent(jspScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbtSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSalvarActionPerformed
         // TODO add your handling code here:
         objUni = new UnidadeJar();
         
@@ -138,9 +179,9 @@ public class UnidadeJFrame extends javax.swing.JFrame {
                 limparCampos();
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbtSalvarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jbtCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCancelarActionPerformed
         // TODO add your handling code here:
         int escolha = JOptionPane.showConfirmDialog(this, "Deseja relamente cancelar o cadastro?", "Cancelar", JOptionPane.YES_NO_OPTION);
         if (escolha == JOptionPane.YES_OPTION) {
@@ -149,7 +190,7 @@ public class UnidadeJFrame extends javax.swing.JFrame {
         } else {
             //não confirmou
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jbtCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,10 +229,12 @@ public class UnidadeJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField entradaUnidade;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jbtCancelar;
+    private javax.swing.JButton jbtSalvar;
+    private javax.swing.JScrollPane jspScroll;
+    private javax.swing.JTable jtbTabelaUnidade;
     // End of variables declaration//GEN-END:variables
 
     private boolean preencherObjeto(){
@@ -217,6 +260,26 @@ public class UnidadeJFrame extends javax.swing.JFrame {
         
       entradaUnidade.setText("");
         
+    }
+    
+    private void preencheTabela(){
+        SalvarUnidade DAOConsulta = new SalvarUnidade();
+        UnidadeJar uni = new UnidadeJar();
+        DefaultTableModel modeloTU = (DefaultTableModel) jtbTabelaUnidade.getModel();
+
+        try{
+            List<UnidadeJar> todasUnidades = DAOConsulta.ConsultaTudo();
+            
+            for(UnidadeJar unidade : todasUnidades)
+            {
+                modeloTU.addRow(new Object[] {unidade.getIdUnidadeDeInstalacao(),unidade.getUnidade()});
+            }
+        }catch(SQLException ex) {
+                    Logger.getLogger(UnidadeJFrame.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+
+
     }
 
 

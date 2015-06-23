@@ -48,6 +48,7 @@ public class IndexJFrame extends javax.swing.JFrame {
         jItemBemAtivo = new javax.swing.JMenuItem();
         jItemLicenca = new javax.swing.JMenuItem();
         jmConsulta = new javax.swing.JMenu();
+        jmiConsultaFornecedor = new javax.swing.JMenuItem();
         jmConfig = new javax.swing.JMenu();
         jItemUnidade = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -115,6 +116,16 @@ public class IndexJFrame extends javax.swing.JFrame {
 
         jmConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iquiscbaii/img/lupa.png"))); // NOI18N
         jmConsulta.setText("Consulta");
+
+        jmiConsultaFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/fornecedor.png"))); // NOI18N
+        jmiConsultaFornecedor.setText("Fornecedores");
+        jmiConsultaFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiConsultaFornecedorActionPerformed(evt);
+            }
+        });
+        jmConsulta.add(jmiConsultaFornecedor);
+
         jMenuBar1.add(jmConsulta);
 
         jmConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iquiscbaii/img/config.png"))); // NOI18N
@@ -195,6 +206,11 @@ public class IndexJFrame extends javax.swing.JFrame {
         new LicencaJFrame().setVisible(true);
     }//GEN-LAST:event_jItemLicencaActionPerformed
 
+    private void jmiConsultaFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsultaFornecedorActionPerformed
+        // TODO add your handling code here:
+        new ConsultaFornecedor().setVisible(true);
+    }//GEN-LAST:event_jmiConsultaFornecedorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -243,5 +259,6 @@ public class IndexJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jSubItemFornecedor;
     private javax.swing.JMenu jmConfig;
     private javax.swing.JMenu jmConsulta;
+    private javax.swing.JMenuItem jmiConsultaFornecedor;
     // End of variables declaration//GEN-END:variables
 }

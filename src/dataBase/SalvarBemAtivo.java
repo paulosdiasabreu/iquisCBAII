@@ -13,6 +13,7 @@ import java.util.List;
 public class SalvarBemAtivo extends ConectaDB {
     
     ConectaDB con;
+    private Object modeloTU;
     
     public List<NotaFiscalJar> todasAsNotas() throws SQLException{
     con = new ConectaDB();
@@ -103,5 +104,9 @@ public class SalvarBemAtivo extends ConectaDB {
         
         //return true;
     }
+    
+    
+    
+    
     
 }

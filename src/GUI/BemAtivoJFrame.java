@@ -262,21 +262,20 @@ public class BemAtivoJFrame extends javax.swing.JFrame {
         //preencher objeto  //salvar no banco
         objBemAtivo = new BemAtivoJar();
         
-        if(validaCampos()){//inicio if valida
-            if(preencherObjeto()){ //inicio if preenche
-                SalvarBemAtivo DAOsalvar = new SalvarBemAtivo();
-                try{
-                    DAOsalvar.salvarBem(objBemAtivo);
-                    JOptionPane.showMessageDialog(this, "Registro salvo com sucesso!");
-                    DAOsalvar.getConexao().close();
-                    limparCampos();
-                                        
-                }catch(SQLException ex){
-                    Logger.getLogger(BemAtivoJFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } // fim if preenche
-        }//fim if valida
-        
+        try{
+            if(validaCampos()){//inicio if valida
+                if(preencherObjeto()){ //inicio if preenche
+                    SalvarBemAtivo DAOsalvar = new SalvarBemAtivo();
+                        DAOsalvar.salvarBem(objBemAtivo);
+                        JOptionPane.showMessageDialog(this, "Registro salvo com sucesso!");
+                        DAOsalvar.getConexao().close();
+                        limparCampos();
+                }   
+            }
+        }catch(SQLException ex){
+            Logger.getLogger(BemAtivoJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
     }//GEN-LAST:event_jbuttonSalvarActionPerformed
 
     private void jcbNotaFiscalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbNotaFiscalActionPerformed
