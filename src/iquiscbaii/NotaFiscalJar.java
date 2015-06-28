@@ -5,6 +5,8 @@ public class NotaFiscalJar {
     private Integer idNotaFiscal;
     private Integer numeroNF;
     private String imagemNF;
+    private String razaoSocial;
+    private String inscricao;
 
     public void setFornecedores_idFornecedores(int Fornecedores_idFornecedores) {
         this.Fornecedores_idFornecedores = Fornecedores_idFornecedores;
@@ -42,6 +44,22 @@ public class NotaFiscalJar {
     @Override
     public String toString(){
         return numeroNF.toString() ;
+    }
+
+    public String getRazaoSocial() {
+        return razaoSocial;
+    }
+
+    public String getInscricao() {
+        return inscricao;
+    }
+
+    public void setRazaoSocial(String razaoSocial) {
+        this.razaoSocial = razaoSocial;
+    }
+
+    public void setInscricao(String inscricao) {
+        this.inscricao = inscricao;
     }
  
 }

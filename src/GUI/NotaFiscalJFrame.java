@@ -26,9 +26,9 @@ public class NotaFiscalJFrame extends javax.swing.JFrame {
         initComponents();
         
         setLocationRelativeTo(null);
-        URL url = this.getClass().getResource("./img/nf16.png");
-        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
-        this.setIconImage(imagemTitulo);
+//        URL url = this.getClass().getResource("./img/nf16.png");
+//        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+//        this.setIconImage(imagemTitulo);
         
         SalvarNotaFiscal DAO = new SalvarNotaFiscal();
         try{

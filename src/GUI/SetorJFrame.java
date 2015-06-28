@@ -34,9 +34,9 @@ public class SetorJFrame extends javax.swing.JFrame {
         /**
          * Este método seta o ícone da janela
          */
-        URL url = this.getClass().getResource("./img/dir16.png");
-        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
-        this.setIconImage(imagemTitulo);
+//        URL url = this.getClass().getResource("./img/dir16.png");
+//        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+//        this.setIconImage(imagemTitulo);
         preencheTabela();
     }
 

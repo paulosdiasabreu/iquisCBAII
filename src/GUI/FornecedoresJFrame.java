@@ -22,9 +22,9 @@ public class FornecedoresJFrame extends javax.swing.JFrame {
 
         //Faz com que a janela inicialize no centro da tela
         setLocationRelativeTo(null);
-        URL url = this.getClass().getResource("./img/fornecedor.png");
-        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
-        this.setIconImage(imagemTitulo);
+//        URL url = this.getClass().getResource("./img/fornecedor.png");
+//        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+//        this.setIconImage(imagemTitulo);
     }
 
     /**

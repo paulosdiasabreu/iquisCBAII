@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import ConsultaDB.ConsultaForn;
 import dataBase.SalvarFornecedor;
 import iquiscbaii.FornecedoresJar;
 import java.awt.Image;
@@ -14,6 +15,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,12 +29,12 @@ public class ConsultaFornecedor extends javax.swing.JFrame {
      */
     public ConsultaFornecedor() {
         initComponents();
-        preencheTabela();
-        
+        //preencheTabela();
+
         setLocationRelativeTo(null);
-        URL url = this.getClass().getResource("./img/fornecedor.png");
-        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
-        this.setIconImage(imagemTitulo);
+//        URL url = this.getClass().getResource("./img/fornecedor.png");
+//        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+//        this.setIconImage(imagemTitulo);
     }
 
     /**
@@ -44,9 +46,20 @@ public class ConsultaFornecedor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btgConsulta = new javax.swing.ButtonGroup();
         jpPainel = new javax.swing.JPanel();
         jspScroll = new javax.swing.JScrollPane();
         jtTabela = new javax.swing.JTable();
+        jpConsulta = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jrbInscricao = new javax.swing.JRadioButton();
+        jrbRazao = new javax.swing.JRadioButton();
+        jrbFantasia = new javax.swing.JRadioButton();
+        jtValor = new javax.swing.JTextField();
+        jrbTodos = new javax.swing.JRadioButton();
+        jLabel2 = new javax.swing.JLabel();
+        jbConsultar = new javax.swing.JButton();
+        jbLimpar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta - Fornecedores");
@@ -88,15 +101,100 @@ public class ConsultaFornecedor extends javax.swing.JFrame {
             jtTabela.getColumnModel().getColumn(5).setMaxWidth(160);
         }
 
+        jpConsulta.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel1.setText("Tipo de consulta: ");
+
+        btgConsulta.add(jrbInscricao);
+        jrbInscricao.setText("Inscrição CPF/CNPJ");
+
+        btgConsulta.add(jrbRazao);
+        jrbRazao.setText("Razão Social");
+
+        btgConsulta.add(jrbFantasia);
+        jrbFantasia.setText("Nome Fantasia");
+
+        btgConsulta.add(jrbTodos);
+        jrbTodos.setSelected(true);
+        jrbTodos.setText("Todos");
+
+        jLabel2.setText("Valor: ");
+
+        jbConsultar.setText("Consultar");
+        jbConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbConsultarActionPerformed(evt);
+            }
+        });
+
+        jbLimpar.setText("Limpar");
+        jbLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimparActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpConsultaLayout = new javax.swing.GroupLayout(jpConsulta);
+        jpConsulta.setLayout(jpConsultaLayout);
+        jpConsultaLayout.setHorizontalGroup(
+            jpConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpConsultaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(jpConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jpConsultaLayout.createSequentialGroup()
+                        .addComponent(jrbInscricao)
+                        .addGap(18, 18, 18)
+                        .addComponent(jrbRazao)
+                        .addGap(18, 18, 18)
+                        .addComponent(jrbFantasia)
+                        .addGap(18, 18, 18)
+                        .addComponent(jrbTodos))
+                    .addComponent(jtValor))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addComponent(jbConsultar)
+                .addGap(18, 18, 18)
+                .addComponent(jbLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jpConsultaLayout.setVerticalGroup(
+            jpConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpConsultaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jrbInscricao)
+                    .addComponent(jrbRazao)
+                    .addComponent(jrbFantasia)
+                    .addComponent(jrbTodos))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jbConsultar)
+                    .addComponent(jbLimpar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jpPainelLayout = new javax.swing.GroupLayout(jpPainel);
         jpPainel.setLayout(jpPainelLayout);
         jpPainelLayout.setHorizontalGroup(
             jpPainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jspScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
+            .addGroup(jpPainelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jspScroll)
         );
         jpPainelLayout.setVerticalGroup(
             jpPainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jspScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPainelLayout.createSequentialGroup()
+                .addComponent(jpConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jspScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -118,6 +216,21 @@ public class ConsultaFornecedor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConsultarActionPerformed
+        // TODO add your handling code here:
+        if (validaCampos()) {
+            limpaTabela();
+            verificaConsulta();
+        }
+    }//GEN-LAST:event_jbConsultarActionPerformed
+
+    private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed
+        // TODO add your handling code here:
+        jtValor.setText("");
+        btgConsulta.clearSelection();
+        limpaTabela();
+    }//GEN-LAST:event_jbLimparActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,9 +268,20 @@ public class ConsultaFornecedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btgConsulta;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jbConsultar;
+    private javax.swing.JButton jbLimpar;
+    private javax.swing.JPanel jpConsulta;
     private javax.swing.JPanel jpPainel;
+    private javax.swing.JRadioButton jrbFantasia;
+    private javax.swing.JRadioButton jrbInscricao;
+    private javax.swing.JRadioButton jrbRazao;
+    private javax.swing.JRadioButton jrbTodos;
     private javax.swing.JScrollPane jspScroll;
     private javax.swing.JTable jtTabela;
+    private javax.swing.JTextField jtValor;
     // End of variables declaration//GEN-END:variables
 
     private void preencheTabela() {
@@ -181,9 +305,124 @@ public class ConsultaFornecedor extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             Logger.getLogger(UnidadeJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
+    private void tabelaRazao() {
+        ConsultaForn DAORazao = new ConsultaForn();
+        FornecedoresJar tab = new FornecedoresJar();
+        DefaultTableModel modeloTU = (DefaultTableModel) jtTabela.getModel();
+        String razao = jtValor.getText();
+        try {
+            //DAORazao.consultaRazao(razao);
+            List<FornecedoresJar> razaoFornecedores = DAORazao.consultaRazao(razao);
+            for (FornecedoresJar forn : razaoFornecedores) {
+                modeloTU.addRow(new Object[]{
+                    forn.getIdFornecedores(),
+                    forn.getRazaoSocial(),
+                    forn.getNomeFantasia(),
+                    forn.getInscricaoCpfCnpj(),
+                    forn.getInscricaoEstadual(),
+                    forn.getTelefone(),
+                    forn.getEmail()
+                });
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UnidadeJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void tabelaInscricao() {
+
+        ConsultaForn DAORazao = new ConsultaForn();
+        FornecedoresJar tab = new FornecedoresJar();
+        DefaultTableModel modeloTU = (DefaultTableModel) jtTabela.getModel();
+        String razao = jtValor.getText();
+        try {
+            //DAORazao.consultaRazao(razao);
+            List<FornecedoresJar> inscricaoFornecedores = DAORazao.consultaInscricao(razao);
+            for (FornecedoresJar forn : inscricaoFornecedores) {
+                modeloTU.addRow(new Object[]{
+                    forn.getIdFornecedores(),
+                    forn.getRazaoSocial(),
+                    forn.getNomeFantasia(),
+                    forn.getInscricaoCpfCnpj(),
+                    forn.getInscricaoEstadual(),
+                    forn.getTelefone(),
+                    forn.getEmail()
+                });
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UnidadeJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    public void tabelaFantasia() {
+
+        ConsultaForn DAORazao = new ConsultaForn();
+        FornecedoresJar tab = new FornecedoresJar();
+        DefaultTableModel modeloTU = (DefaultTableModel) jtTabela.getModel();
+        String razao = jtValor.getText();
+        try {
+            //DAORazao.consultaRazao(razao);
+            List<FornecedoresJar> fantasiaFornecedores = DAORazao.consultaFantasia(razao);
+            for (FornecedoresJar forn : fantasiaFornecedores) {
+                modeloTU.addRow(new Object[]{
+                    forn.getIdFornecedores(),
+                    forn.getRazaoSocial(),
+                    forn.getNomeFantasia(),
+                    forn.getInscricaoCpfCnpj(),
+                    forn.getInscricaoEstadual(),
+                    forn.getTelefone(),
+                    forn.getEmail()
+                });
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UnidadeJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    private void verificaConsulta() {
+        if (jrbTodos.isSelected()) {
+            preencheTabela();
+        } else if (jrbRazao.isSelected()) {
+            tabelaRazao();
+        } else if (jrbInscricao.isSelected()) {
+            tabelaInscricao();
+        } else if (jrbFantasia.isSelected()) {
+            tabelaFantasia();
+        } else {
+            JOptionPane.showMessageDialog(this, "Verifique Tipo de Consulta e Valor a ser pesquisado.");
+        }
+    }
+
+    private void limpaTabela() {
+        DefaultTableModel modeloTU = (DefaultTableModel) jtTabela.getModel();
+
+//        if (modeloTU.getRowCount() > 0) {
+            while (modeloTU.getRowCount() > 0) {
+                modeloTU.removeRow(0);
+                
+            }
+
+//        }
+
+    }
+
+    public boolean validaCampos() {
+        if (!jrbTodos.isSelected() && !jrbRazao.isSelected() && !jrbInscricao.isSelected() && !jrbFantasia.isSelected()) {
+            JOptionPane.showMessageDialog(this, "Selecione um tipo de consulta.");
+            return false;
+        }
+        if (jrbRazao.isSelected() || jrbInscricao.isSelected() || jrbFantasia.isSelected()) {
+            if (jtValor.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Informe um valor de pesquisa.");
+                return false;
+            }
+        }
+        return true;
     }
 
 }

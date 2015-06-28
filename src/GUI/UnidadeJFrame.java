@@ -38,9 +38,9 @@ public class UnidadeJFrame extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         
-        URL url = this.getClass().getResource("./img/unidade.png");
-        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
-        this.setIconImage(imagemTitulo);
+//        URL url = this.getClass().getResource("./img/unidade.png");
+//        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+//        this.setIconImage(imagemTitulo);
         
         preencheTabela();
     }

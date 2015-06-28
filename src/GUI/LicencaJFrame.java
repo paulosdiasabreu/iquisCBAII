@@ -32,9 +32,9 @@ public class LicencaJFrame extends javax.swing.JFrame {
         initComponents();
         
         setLocationRelativeTo(null);
-        URL url = this.getClass().getResource("./img/soft16.png");
-        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
-        this.setIconImage(imagemTitulo);
+//        URL url = this.getClass().getResource("./img/soft16.png");
+//        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+//        this.setIconImage(imagemTitulo);
         
         SalvarLicenca DAO = new SalvarLicenca();
         try{

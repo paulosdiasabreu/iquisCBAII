@@ -34,9 +34,9 @@ public class BemAtivoJFrame extends javax.swing.JFrame {
         initComponents();
         
         setLocationRelativeTo(null);
-        URL url = this.getClass().getResource("./img/comp16.png");
-        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
-        this.setIconImage(imagemTitulo);
+//        URL url = this.getClass().getResource("./img/comp16.png");
+//        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+//        this.setIconImage(imagemTitulo);
         
         SalvarBemAtivo DAO = new SalvarBemAtivo();
         try{

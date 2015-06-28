@@ -23,7 +23,7 @@ public class IndexJFrame extends javax.swing.JFrame {
      * Creates new form IndexJFrame
      */
     public IndexJFrame() {
-        setExtendedState(JFrame.MAXIMIZED_BOTH); //para abrir em modo tela cheia
+        //setExtendedState(JFrame.MAXIMIZED_BOTH); //para abrir em modo tela cheia
         initComponents();
         setLocationRelativeTo(null);
         
@@ -49,6 +49,7 @@ public class IndexJFrame extends javax.swing.JFrame {
         jItemLicenca = new javax.swing.JMenuItem();
         jmConsulta = new javax.swing.JMenu();
         jmiConsultaFornecedor = new javax.swing.JMenuItem();
+        jmiConsultaNF = new javax.swing.JMenuItem();
         jmConfig = new javax.swing.JMenu();
         jItemUnidade = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -126,6 +127,15 @@ public class IndexJFrame extends javax.swing.JFrame {
         });
         jmConsulta.add(jmiConsultaFornecedor);
 
+        jmiConsultaNF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/nf16.png"))); // NOI18N
+        jmiConsultaNF.setText("Nota Fiscal");
+        jmiConsultaNF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiConsultaNFActionPerformed(evt);
+            }
+        });
+        jmConsulta.add(jmiConsultaNF);
+
         jMenuBar1.add(jmConsulta);
 
         jmConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iquiscbaii/img/config.png"))); // NOI18N
@@ -171,45 +181,57 @@ public class IndexJFrame extends javax.swing.JFrame {
 
     private void jItemNotaFiscalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jItemNotaFiscalActionPerformed
         // TODO add your handling code here:
-        new NotaFiscalJFrame().setVisible(true);
+        NotaFiscalJFrame nfj = new NotaFiscalJFrame();
+        nfj.setVisible(true);
     }//GEN-LAST:event_jItemNotaFiscalActionPerformed
 
     private void jItemBemAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jItemBemAtivoActionPerformed
         // TODO add your handling code here:
-        new BemAtivoJFrame().setVisible(true);
+        BemAtivoJFrame baj = new BemAtivoJFrame();
+        baj.setVisible(true);
     }//GEN-LAST:event_jItemBemAtivoActionPerformed
 
     private void jItemUnidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jItemUnidadeActionPerformed
         // TODO add your handling code here:
-        new UnidadeJFrame().setVisible(true);
+        UnidadeJFrame uj = new UnidadeJFrame();
+        uj.setVisible(true);
     }//GEN-LAST:event_jItemUnidadeActionPerformed
 
     private void jSubItemFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSubItemFornecedorActionPerformed
         // TODO add your handling code here:
-        new FornecedoresJFrame().setVisible(true);
-
+        FornecedoresJFrame fj = new FornecedoresJFrame();
+        fj.setVisible(true);
     }//GEN-LAST:event_jSubItemFornecedorActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        new SetorJFrame().setVisible(true);
+        SetorJFrame sj = new SetorJFrame();
+        sj.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jSubItemEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSubItemEndActionPerformed
         // TODO add your handling code here:
         //alterar...
-        new FornecedoresJFrame().setVisible(false);
+        //new FornecedoresJFrame().setVisible(false);
     }//GEN-LAST:event_jSubItemEndActionPerformed
 
     private void jItemLicencaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jItemLicencaActionPerformed
         // TODO add your handling code here:
-        new LicencaJFrame().setVisible(true);
+        LicencaJFrame lj = new LicencaJFrame();
+        lj.setVisible(true);
     }//GEN-LAST:event_jItemLicencaActionPerformed
 
     private void jmiConsultaFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsultaFornecedorActionPerformed
         // TODO add your handling code here:
-        new ConsultaFornecedor().setVisible(true);
+        ConsultaFornecedor cf = new ConsultaFornecedor();
+        cf.setVisible(true);
     }//GEN-LAST:event_jmiConsultaFornecedorActionPerformed
+
+    private void jmiConsultaNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsultaNFActionPerformed
+        // TODO add your handling code here:
+        ConsultaNota cnf = new ConsultaNota();
+        cnf.setVisible(true);
+    }//GEN-LAST:event_jmiConsultaNFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -260,5 +282,6 @@ public class IndexJFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jmConfig;
     private javax.swing.JMenu jmConsulta;
     private javax.swing.JMenuItem jmiConsultaFornecedor;
+    private javax.swing.JMenuItem jmiConsultaNF;
     // End of variables declaration//GEN-END:variables
 }
